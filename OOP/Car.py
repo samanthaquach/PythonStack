@@ -1,4 +1,4 @@
-class Car(object):
+# class Car(object):
 
     def __init__(self, price, speed, fuel, mileage):
         self.price = price
