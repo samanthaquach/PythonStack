@@ -23,12 +23,13 @@ class Bike(object):
         print('Bike Price: ' + str(self.price))
         print('Max Speed: ' + str(self.max_speed))
         print('Miles: ' + str(self.miles))
+        return self
 
 # Have the first instance ride three times, reverse once and have it displayInfo().
 # Have the second instance ride twice, reverse twice and have it displayInfo(). 
 # Have the third instance reverse three times and displayInfo().
     
-bike1 = Bike(200, "25mph").ride().ride().ride().reverse().displayInfo()
+bike1 = Bike(200, "25mph").ride().ride().ride().reverse().displayInfo().Bike_print()
 # print
 bike2 = Bike(300, "15mph").ride().ride().reverse().reverse().displayInfo()
 bike3 = Bike(1000, "30mph").reverse().reverse().reverse().displayInfo()

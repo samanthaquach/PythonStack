@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dojo Survey</title>
+</head>
+
+<body>
+    <h1>Your Thoughts</h1>
+    <form action='/process' method='post'>
+        Name: <input type='text' name='name'> 
+        Dojo Location: 
+        <select name='location'>
+        <option value="chicago">chicago</option>
+        <option value="california">california</option>
+        <option value="texas">taxas</option>
+        <option value="florida">florida</option>
+        </select>
+        Favorite Language:
+        <select name='language'>
+        <option value="python">python</option>
+        <option value="css">css</option>
+        <option value="ruby">ruby</option>
+        </select>
+        Comment (optional): <input type='text' name='comment'>
+        <input type='submit' value='create user'>
+    </form>
+</body>
+
+</html>

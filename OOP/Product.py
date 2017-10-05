@@ -14,7 +14,7 @@ class Product(object):
             self.price = 0
         if cost == str("returning with box"):
             self.status = "like new"
-        if cost <= str("returning open box"):
+        if cost == str("returning open box"):
             self.price = (self.price - (self.price * 0.2))
     
     def calculateStateTax(self):
@@ -31,5 +31,5 @@ class Product(object):
         print self.status
         return self
 
-doll_house = Product(100,"Doll House","5lbs","Rockstar", "return").displayInfo().calculateStateTax()
+doll_house = Product(100,"Doll House","5lbs","Rockstar", "returning open box").displayInfo().calculateStateTax()
 # print doll_house
