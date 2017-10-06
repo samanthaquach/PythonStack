@@ -5,12 +5,20 @@
     <title>static example</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='my_script.js') }}"></script>
-    <img src="{{ url_for('static', filename='images/tmnt.png') }}">
+    
 </head>
 
 <body>
-    <div class="wrapper">
-    </div>
+    <img src="{{ url_for('static', filename='images/tmnt.png') }}" alt="turtles" usemap="#ninjas">
+    
+    <map name="ninjas" id="ninjas">
+    <area alt="orange" title="michaelangelo" href="http://localhost:5000/ninjas/orange" shape="rect" coords="162,238,243,292"/>
+    <area alt="red" title="rafael" href="http://localhost:5000/ninjas/red" shape="rect" coords="372,325,441,375">
+    <area alt="blue" title="leonardo" href="http://localhost:5000/ninjas/blue" shape="rect" coords="347,198,421,241">
+    <area alt="purple" title="donatello" href="http://localhost:5000/ninjas/purple" shape="rect" coords="504,218,576,288"/>
+    <area alt="april" title="april" href="http://localhost:5000/ninjas/notapril" shape="rect" coords="498,21,606,74"/>
+    </map>
+
 </body>
 
 </html>
