@@ -8,14 +8,30 @@ def index():
 
 @app.route('/process', methods=['POST']) #to match with form /user change to /process
 def create_user():
-   print request.form['name']
-   # here we add two properties to session to store the name and email
+#    print request.form['name']
    session['name'] = request.form['name']
    session['email'] = request.form['email']
-   return redirect('/show') # noticed that we changed where we redirect to so that we can go to the page that displays the name and email!
+   session['password'] = request.form['password']
+   return redirect('/show') 
+
+@app.route('/login', methods=['POST']) #can't have two /process
+def login():
+    if request.form['action'] == 'register':
+        return redirect('/show')
+    elif request.form['action'] == 'login':
+        return redirect('/') 
+    print request.form['email']
+   
+    session['email'] = request.form['email']
+    session['password'] = request.form['password']
+
+    return redirect('/show')
+
+
+
 
 @app.route('/show')
 def show_user():
-  return render_template('user.html', name=session['name'], email=session['email'])
+  return render_template('show.html', name=session['name'])
 
 app.run(debug=True) # run our server

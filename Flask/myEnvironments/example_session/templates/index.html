@@ -9,9 +9,35 @@
     <h3>Create a User</h3>
     <!-- read on to learn about form actions, we'll talk about the method in a later section -->
     <form action='/process' method='post'>
-        Name: <input type='text' name='name'> Email: <input type='text' name='email'>
-        <input type='submit' value='create user'>
+        Name: <input type='text' name='name'> <br>
+        Email: <input type='text' name='email'><br>
+        <input type="hidden" name="action" value="register">
+        Passw: <input type="password" name="password"><br>
+        <input type='submit' value='register'>
     </form>
+    <form method="post" action="/login">
+        <input type="hidden" name="action" value="login">
+        <input type="text" name="email">
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+<!-- 
+
+
+
+    if request.form['action'] == 'register':
+  //do registration process
+elif request.form['action'] == 'login':
+  //do login process
+
+    <form method="post" action="/process">
+        <input type="hidden" name="action" value="register">
+        <input type="text" name="first_name">
+        <input type="text" name="last_name">
+        <input type="text" name="email">
+        <input type="password" name="password">
+        <input type="submit" value="Register">
+    </form> -->
 </body>
 
 </html>

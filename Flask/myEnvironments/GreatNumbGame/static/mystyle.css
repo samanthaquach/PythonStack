@@ -1,0 +1,18 @@
+.wrapper{
+    width: 500px;
+    height: 500px;
+}
+#high{
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    background-color: rgba(255, 0, 0, 0.61);
+    border: 2px solid black;
+}
+#low{
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    background-color: rgba(238, 206, 28, 0.7);
+    border: 2px solid black;
+}
