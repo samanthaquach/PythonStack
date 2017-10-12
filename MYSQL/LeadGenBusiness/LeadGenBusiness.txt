@@ -1,0 +1,75 @@
+1)
+select amount, charged_datetime 
+FROM billing
+WHERE charged_datetime
+BETWEEN '2012-03-01'
+AND '2013-03-01'
+
+2)
+select billing.amount, billing.client_id
+FROM billing
+WHERE billing.client_id = 2
+
+3)
+select *
+FROM sites
+WHERE sites.client_id = 10
+
+4)
+select created_datetime, sites.client_id
+FROM sites
+WHERE sites.client_id IN (1,20)
+
+5)
+select *
+FROM leads
+WHERE registered_datetime
+BETWEEN '2011-01-01'
+AND '2011-02-15'
+
+6)
+select clients.first_name, clients.last_name, leads_id
+FROM clients
+JOIN sites
+ON clients.client_id = sites.site_id
+JOIN leads
+ON sites.site_id = leads.leads_id
+WHERE registered_datetime BETWEEN '2011-01-01' AND '2011-12-31'
+
+
+7)
+select clients.first_name, clients.last_name, leads_id, registered_datetime
+FROM clients
+JOIN sites
+ON clients.client_id = sites.site_id
+JOIN leads
+ON sites.site_id = leads.leads_id
+WHERE registered_datetime BETWEEN '2011-01-01' AND '2011-07-01'
+
+8)
+select clients.client_id, clients.first_name, clients.last_name, leads_id, registered_datetime, sites.site_id
+FROM clients
+JOIN sites
+ON clients.client_id = sites.site_id
+JOIN leads-- 
+ON sites.site_id = leads.leads_id
+WHERE registered_datetime BETWEEN '2011-01-01' AND '2011-12-31'
+
+
+9)
+SELECT clients.first_name, clients.last_name, billing.amount, clients.client_id
+FROM billing
+JOIN clients
+ON billing.billing_id = clients.client_id
+WHERE billing.amount ORDER BY clients.client_id
+
+10)
+SELECT clients.first_name, client.last_name
+	GROUP_CONCAT(name)
+FROM clients
+JOIN sites
+ON clients.client_id = sites.site_id
+
+
+
+

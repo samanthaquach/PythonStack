@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+
+        <tr>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+         {% for friend in friends: %}
+        <tr> 
+            
+            <th>{{friend['name']}}</th>
+            <th>{{friend['age']}}</th>
+        </tr>
+         {% endfor %}
+    </table>
+             <!-- {% for friend in friends: %}
+            <p>name: {{friend['name']}}</p>
+            <p>age: {{friend['age']}}</p>
+            {% endfor %} -->
+
+
+    
+    <h1>heres the users</h1>
+    <h2>form to create a friend</h2>
+        <form action="/create_friend" method="post">
+        <input type='text' name='name'>
+        <input type="text" name="age">
+        <input type='submit'>
+    </form>
+    <form action="/refresh" method="post">
+        <button>Clear</button>
+    </form>
+</body>
+</html>

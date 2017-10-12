@@ -1,0 +1,51 @@
+.wrapper{
+    width: 650px;
+    background-color: rgb(241, 241, 241);
+    background-image: url('/static/images/chair.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    
+}
+.form{
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin-left:-20px;
+    margin-bottom: 10px;
+
+}
+input, p{
+    display: inline-block;
+    vertical-align: top;
+}
+
+p{
+    font-family: Source Serif Pro, 'Times New Roman';
+    color: rgba(5, 2, 2, 0.74);
+}
+input{
+    margin-top: 17px;
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.719);
+}
+.text{
+    width: 200px;
+    margin-right: -10px;
+    margin-left: -14px;
+    display: inline-block;
+    vertical-align: top;
+}
+.text p{
+    margin-bottom: 18.5px;
+    display: block;
+    text-align: right;
+}
+.logInButton{
+    display: inline-block;
+    vertical-align: top;
+}
+.TopRightButton{
+    background-color: rgba(255, 255, 255, 0.918);
+    width: 100px;
+}
