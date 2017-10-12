@@ -3,6 +3,8 @@ import re
 import md5
 from mysqlconnection import MySQLConnector
 import datetime
+import os, binascii
+
 app = Flask(__name__)
 mysql = MySQLConnector(app, 'mydb')
 
@@ -23,9 +25,9 @@ def process():
     email = request.form['email']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    # password = md5.new(request.form['password']).hexdigest()
-    password = request.form['password']
-
+    salt = binascii.b2a_hex(os.urandom(15))
+    password = md5.new(request.form['password'] + salt).hexdigest()
+    # password = request.form['password']
 
     existingEmails = mysql.query_db("SELECT * FROM registers WHERE email = '{}' ".format(email) ) 
 
@@ -70,7 +72,7 @@ def process():
         flash(errors)
 
     else:
-        mysql.query_db ("INSERT INTO registers (email, first_name, last_name, password) VALUES ('{}','{}','{}','{}')".format(email,first_name,last_name,password))
+        mysql.query_db ("INSERT INTO registers (email, first_name, last_name, password, salt) VALUES ('{}','{}','{}','{}','{}')".format(email,first_name,last_name,password,salt))
         flash ('You have been successfully registered! Now, log in.')
         return redirect('/')
 
@@ -85,15 +87,13 @@ def login():
 def SignIn():
     email = request.form['email']
     password = request.form['password']
-
     users = mysql.query_db("SELECT * FROM registers WHERE email = '{}' ".format(email) ) 
     if len(users) > 0:
         user = users[0]
-
-        if user['password'] == password:
-            print "success"
+        new_salt = str(user['salt'])
+        encrypted_password = md5.new(password + new_salt).hexdigest()
+        if user['password'] == encrypted_password:
             session['first_name'] = user['first_name']
-            flash('Yay, you are logged in')
             return redirect('/alreadyin')
         #Needed two else statements?
         else:
@@ -109,6 +109,11 @@ def SignIn():
 def alreadylogged():
     
     return render_template('alreadysignedin.html')
+
+@app.route('/logOut', methods=['GET'])
+def logOut():
+    flash('You are logged out!')
+    return redirect('/')
     
 
 app.run(debug=True)

@@ -13,21 +13,53 @@
 <body>
     <div class="wrapper">
         <div class="text">
-            <p>Email</p>
-            <p>Password</p>
+            <span>CodingDojo Wall</span>
+            <p>Welcome</p> {{ session['first_name'] }}
         </div>
         <div class="form">
+            
+            <form action='/logout' method='GET'>
+                <button>log off</button>
+            </form>
 
-            <form action='/signIn' method='POST'>
-                <input type="text" name="email">
-                <br>
-                <input type="password" name="password">
-                <br>
-                <input type="submit" value="Log In">
+            <form action='/TOTheWall' method='GET'>
+                <button>Wall Posts</button>
+            </form>
+
+            <form action='/GetToLogin' method='GET'>
+                <button>log In</button>
+            </form>
+            <form action='/register' method='GET'>
+                <button>Register</button>
+            </form>
+            <form action='/post_message' method='POST'>
+                <!-- <input type="text" name="text area"> -->
+                <textarea rows="5" cols="20" name="text_area"> </textarea>
+                <input type="submit" value="POST">
             </form>
             {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
             <p>{{ message }}</p>
             {% endfor %} {% endif %} {% endwith %}
+                        
+
+        <table>
+        <!-- <tr>
+            <th>{{post_message}}</th>
+        </tr> -->
+         {% for message in post_messages: %}
+        <tr> 
+            <td>{{message['first_name']}} - {{message['message_date']}}, {{message['year_name']}}</td>
+        </tr>
+        <tr>
+            <td>{{message['message']}}</td>
+        </tr>
+         {% endfor %}
+        </table>
+
+
+
+
+
         </div>
 
 

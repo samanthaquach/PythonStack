@@ -13,6 +13,9 @@
 <body>
     <div class="wrapper">
         <p>Hey, {{ session['first_name'] }}, you have signed in! </p>
+        <form action='/logOut' method='Get'>
+            <button>Log Out</button>
+        </form>
 
     </div>
 
