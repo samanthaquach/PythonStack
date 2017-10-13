@@ -1,0 +1,29 @@
+.wrapper{
+    width: 600px;
+}
+
+.text{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+    width: 200px;
+}
+
+.text p{
+   text-align: right;
+   margin-right: 0px;
+   margin-top: 10px;
+   margin-bottom: -10px;
+}
+
+.form{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 0px;
+}
+input{
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 5px;
+}

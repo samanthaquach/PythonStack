@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/logIn.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mystyle.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='my_script.js') }}"></script>
     <title>Document</title>
 </head>
@@ -13,52 +13,44 @@
 <body>
     <div class="wrapper">
         <div class="text">
-            <span>CodingDojo Wall</span>
-            <p>Welcome</p> {{ session['first_name'] }}
-        </div>
-        <div class="form">
+            <span>CodingDojo Wall</span> 
             
-            <form action='/logout' method='GET'>
-                <button>log off</button>
-            </form>
-
             <form action='/TOTheWall' method='GET'>
                 <button>Wall Posts</button>
             </form>
-
             <form action='/GetToLogin' method='GET'>
                 <button>log In</button>
             </form>
             <form action='/register' method='GET'>
                 <button>Register</button>
             </form>
+            <form action='/logout' method='GET'>
+                <button>log off</button>
+            </form>
+
+            <p>Welcome</p> {{ session['first_name'] }}
+        </div>
+
+        <div class="form">
             <form action='/post_message' method='POST'>
-                <!-- <input type="text" name="text area"> -->
-                <textarea rows="5" cols="20" name="text_area"> </textarea>
+                <textarea rows="6" cols="60" name="text_area"> </textarea>
                 <input type="submit" value="POST">
             </form>
+            
             {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
             <p>{{ message }}</p>
-            {% endfor %} {% endif %} {% endwith %}
-                        
+            {% endfor %} {% endif %} {% endwith %}              
 
-        <table>
-        <!-- <tr>
-            <th>{{post_message}}</th>
-        </tr> -->
-         {% for message in post_messages: %}
-        <tr> 
-            <td>{{message['first_name']}} - {{message['message_date']}}, {{message['year_name']}}</td>
-        </tr>
-        <tr>
-            <td>{{message['message']}}</td>
-        </tr>
-         {% endfor %}
-        </table>
-
-
-
-
+            <table>
+                {% for message in post_messages: %}
+                <tr> 
+                    <td><span class='message_heading'>{{message['first_name']}} - {{message['message_date']}}, {{message['year_name']}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{message['message']}}</td>
+                </tr>
+                {% endfor %}
+            </table>
 
         </div>
 

@@ -49,11 +49,10 @@ def post_comments():
     id = session['id'] 
     
     comment = request.form['text_area']
-    # created_at = time.strftime('%m-%d-%Y')
+
     created_at = datetime.datetime.now()
     updated_at = datetime.datetime.now()
     mysql.query_db ("INSERT INTO comments (messages_id, updated_at, users_id, comment, created_at) VALUES ('{}','{}','{}','{}','{}')".format (message_id, updated_at, id, comment, created_at))
-    # print message
 
     flash ('You have been successfully submitted your comments!')
 
@@ -126,7 +125,7 @@ def register_user():
 
     return redirect('/')
 
-# register ------------------------------------
+# log in ------------------------------------
 
 @app.route('/GetToLogin', methods=['GET'])
 def Get_Login():
@@ -158,17 +157,20 @@ def Primary_Login():
         flash('No Such User!')
 
     return redirect('/GetToLogin')
+
+# log out --------------------------------------
     
 @app.route('/logout', methods=['GET'])
 def logout():
     session.clear()
     return redirect('/')
 
+# post message -----------------------------------
+
 @app.route('/post_message', methods=['POST'])
 def post_message():
     id = session['id']
     message = request.form['text_area']
-    # created_at = time.strftime('%m-%d-%Y')
     created_at = datetime.datetime.now()
     mysql.query_db ("INSERT INTO messages (users_id, message, created_at) VALUES ('{}','{}','{}')".format (id, message, created_at))
     print message
@@ -176,11 +178,6 @@ def post_message():
     flash ('You have been successfully submitted your message!')
 
     return redirect('/')
-
-# @app.route('/complete_message')
-# def completeMessage():
-    
-#     return render_template('completemessage.html')
     
 
 app.run(debug=True)

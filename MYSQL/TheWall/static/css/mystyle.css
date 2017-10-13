@@ -1,0 +1,29 @@
+.wrapper{
+    width: 800px;
+}
+.text{
+    display: inline-block;
+    vertical-align: top;
+    width: 700px;
+}
+.text span, .text p{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.text form{
+    display: inline-block;
+    vertical-align: top;
+    margin-lefT: 5px;
+}
+.text p{
+    margin-left: 60px;
+    margin-top: 1px;
+}
+td{
+    padding: 10px 10px 0px 10px;
+    text-align: left;
+}
+.message_heading{
+    margin-left: -10px;
+}
