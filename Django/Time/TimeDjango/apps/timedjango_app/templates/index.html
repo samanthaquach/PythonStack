@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    {% load static %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+</head>
+<body>
+    <div class="wrapper"> 
+
+        <div class="header"> 
+            <h1>Current Time</h1>    
+        </div>
+
+        <div class="timestamp">
+            <div class="date">
+                {{datetime}} 
+            </div> 
+ 
+            <div class="time"> 
+                {{time}} 
+            </div>
+             
+
+
+        </div>
+        
+    </div>
+
+</body>
+</html>
