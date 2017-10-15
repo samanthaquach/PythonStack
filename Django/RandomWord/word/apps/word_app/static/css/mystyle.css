@@ -1,0 +1,20 @@
+.wrapper{
+    width: 900px;
+    height: 300px;
+}
+
+h1{
+    font-size: 18px;
+    font-family: comic sans-serif;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.generator{
+    width: 500px;
+    margin-left: 250px;
+    text-align: center;
+    border: 1px solid black;
+    font-family: comic sans-serif;
+    font-size: 30px;
+}

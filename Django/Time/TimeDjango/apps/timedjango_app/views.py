@@ -15,6 +15,7 @@ def index(request):
     context = {
         "datetime": strftime("%b %d, %Y", gmtime()),
         "time": strftime("%I:%M %p",gmtime())
+        #Time-zone doesn't update
 
     }
     return render(request, 'index.html', context)
