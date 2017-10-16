@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    {{counter}}
+    <p>You have submitted this survey {{ counter }}</p>
     <div class="box">
         <h1>Submitted Information</h1>
         <div class="info">
@@ -17,10 +17,10 @@
             <p>Comment: </p>
         </div>
         <div class="info">
-            <p>{{Name}}</p>
-            <p>{{Location}} </p>
-            <p>{{Language}}</p>
-            <p>{{Comment}}</p>
+            <p>{{ request.session.name }}</p>
+            <p>{{ request.session.location }} </p>
+            <p>{{ request.session.language }}</p>
+            <p>{{ request.session.comment }}</p>
         </div>
 
     </div>
