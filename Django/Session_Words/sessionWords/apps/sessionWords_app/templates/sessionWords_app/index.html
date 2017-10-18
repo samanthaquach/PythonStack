@@ -7,6 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hi</h1>
+    <div class="wrapper">
+        <div class="AddingWord">
+            <form action='/process' method='post'>
+            {% csrf_token %}
+                <p>Add a new word:</p><br>
+                <input type='text' name='addingWord'><br>
+                <p>Choose Color:</p><br>
+                <form>
+                    <input type="radio" name="Red"> <p>Red</p> 
+                    <input type="radio" name="Green"> <p>Green</p> 
+                    <input type="radio" name="Blue"> <p>Blue</p>
+                    <input type="checkbox" name="Big_Fonts"> <p>Show in BIG fonts!</p> <br>
+                </form>
+
+                <input type='submit' value='Add_Session'>
+            </form>
+        </div>
+
+
+
+    </div>
 </body>
 </html>

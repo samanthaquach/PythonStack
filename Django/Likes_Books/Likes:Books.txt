@@ -1,0 +1,1719 @@
+Last login: Mon Oct 16 23:00:52 on ttys000
+Samanthas-MacBook-Air:~ sammiae$ source djangoEnv/bin/activate
+(djangoEnv) Samanthas-MacBook-Air:~ sammiae$ cd documents
+(djangoEnv) Samanthas-MacBook-Air:documents sammiae$ cd /Users/sammiae/Documents/PythStack 
+(djangoEnv) Samanthas-MacBook-Air:PythStack sammiae$ cd django
+(djangoEnv) Samanthas-MacBook-Air:django sammiae$ cd /Users/sammiae/Documents/PythStack/Django/Likes_Books 
+(djangoEnv) Samanthas-MacBook-Air:Likes_Books sammiae$ cd likesbooks
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'Uploader' to books without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> timezone.now
+Migrations for 'LikesBooks_app':
+  apps/LikesBooks_app/migrations/0002_auto_20171017_0436.py:
+    - Remove field Users from books
+    - Add field Uploader to books
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ 2
+-bash: 2: command not found
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ ython manage.py migrate
+-bash: ython: command not found
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.LikesBooks_app.models import *
+
+In [2]: Book.objects.first().uploader 
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-56c06aedf926> in <module>()
+----> 1 Book.objects.first().uploader
+
+NameError: name 'Book' is not defined
+
+In [3]: Books.objects.first().uploader 
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-3-085e20599a28> in <module>()
+----> 1 Books.objects.first().uploader
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in first(self)
+    552         Returns the first object of a query, returns None if no match is found.
+    553         """
+--> 554         objects = list((self if self.ordered else self.order_by('pk'))[:1])
+    555         if objects:
+    556             return objects[0]
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in __iter__(self)
+    254                - Responsible for turning the rows into model objects.
+    255         """
+--> 256         self._fetch_all()
+    257         return iter(self._result_cache)
+    258 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _fetch_all(self)
+   1083     def _fetch_all(self):
+   1084         if self._result_cache is None:
+-> 1085             self._result_cache = list(self.iterator())
+   1086         if self._prefetch_related_lookups and not self._prefetch_done:
+   1087             self._prefetch_related_objects()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in __iter__(self)
+     52         # Execute the query. This will also fill compiler.select, klass_info,
+     53         # and annotations.
+---> 54         results = compiler.execute_sql()
+     55         select, klass_info, annotation_col_map = (compiler.select, compiler.klass_info,
+     56                                                   compiler.annotation_col_map)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, result_type)
+    833         cursor = self.connection.cursor()
+    834         try:
+--> 835             cursor.execute(sql, params)
+    836         except Exception:
+    837             cursor.close()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: no such column: LikesBooks_app_books.Uploader_id
+
+In [4]: Books.objects.create(name="Harry Potter: Sorc",desc="Coolest Book Ever")
+   ...: 
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-4-082c23b4b48d> in <module>()
+----> 1 Books.objects.create(name="Harry Potter: Sorc",desc="Coolest Book Ever")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: table LikesBooks_app_books has no column named Uploader_id
+
+In [5]: Books.objects.create(name="Lost Sea",Desc="Funny")
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-5-239b34b775f1> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",Desc="Funny")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    395         and returning the created object.
+    396         """
+--> 397         obj = self.model(**kwargs)
+    398         self._for_write = True
+    399         obj.save(force_insert=True, using=self.db)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in __init__(self, *args, **kwargs)
+    553                     pass
+    554             if kwargs:
+--> 555                 raise TypeError("'%s' is an invalid keyword argument for this function" % list(kwargs)[0])
+    556         super(Model, self).__init__()
+    557         signals.post_init.send(sender=self.__class__, instance=self)
+
+TypeError: 'Desc' is an invalid keyword argument for this function
+
+In [6]: Books.objects.create(name="Lost Sea",desc="Funny")
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-6-c22c757584cf> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",desc="Funny")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: table LikesBooks_app_books has no column named Uploader_id
+
+In [7]:                                                                         
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ ython manage.py migrate
+-bash: ython: command not found
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: Books.objects.create(name="Lost Sea",desc="Funny")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-c22c757584cf> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",desc="Funny")
+
+NameError: name 'Books' is not defined
+
+In [2]: Books.objects.create(name="Lost Sea",desc="Funny")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-c22c757584cf> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",desc="Funny")
+
+NameError: name 'Books' is not defined
+
+In [3]: Books.objects.create(name="Lost Sea",desc="Funny")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-c22c757584cf> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",desc="Funny")
+
+NameError: name 'Books' is not defined
+
+In [4]: Books.objects.create(name="Lost Land", desc="Funny")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-50b50fc92576> in <module>()
+----> 1 Books.objects.create(name="Lost Land", desc="Funny")
+
+NameError: name 'Books' is not defined
+
+In [5]: from apps.LikesBooks_app.models import *
+
+In [6]: Books.objects.create(name="Lost Land", desc="Funny")
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-6-50b50fc92576> in <module>()
+----> 1 Books.objects.create(name="Lost Land", desc="Funny")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: table LikesBooks_app_books has no column named Uploader_id
+
+In [7]:                                                                         
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'Users' to books without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1       
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> timezone.now
+Migrations for 'LikesBooks_app':
+  apps/LikesBooks_app/migrations/0003_auto_20171017_0443.py:
+    - Remove field Uploader from books
+    - Remove field updated_at from books
+    - Add field Users to books
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ ython manage.py migrate
+-bash: ython: command not found
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.LikesBooks_app.models import *
+
+In [2]: Books.objects.create(name="Lost Land", desc="Funny")
+---------------------------------------------------------------------------
+IntegrityError                            Traceback (most recent call last)
+<ipython-input-2-50b50fc92576> in <module>()
+----> 1 Books.objects.create(name="Lost Land", desc="Funny")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+IntegrityError: NOT NULL constraint failed: LikesBooks_app_books.updated_at
+
+In [3]: Books.objects.create(name="Cool Beans",desc="all about beans")
+---------------------------------------------------------------------------
+IntegrityError                            Traceback (most recent call last)
+<ipython-input-3-a6aeb1953f35> in <module>()
+----> 1 Books.objects.create(name="Cool Beans",desc="all about beans")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+IntegrityError: NOT NULL constraint failed: LikesBooks_app_books.updated_at
+
+In [4]:                                                                         
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.LikesBooks_app.models import *
+
+In [2]: Books.objects.all()
+Out[2]: <QuerySet [<Users object: Harry Potter Coolest Book Ever>]>
+
+In [3]: Books.objects.create(name="Cool Beans",desc="all about beans")
+---------------------------------------------------------------------------
+IntegrityError                            Traceback (most recent call last)
+<ipython-input-3-a6aeb1953f35> in <module>()
+----> 1 Books.objects.create(name="Cool Beans",desc="all about beans")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+IntegrityError: NOT NULL constraint failed: LikesBooks_app_books.updated_at
+
+In [4]: Books.objects.delete()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-4-2ba099dcde93> in <module>()
+----> 1 Books.objects.delete()
+
+AttributeError: 'Manager' object has no attribute 'delete'
+
+In [5]: Books.objects.first()
+Out[5]: <Users object: Harry Potter Coolest Book Ever>
+
+In [6]: Books.objects.create(name="Hello Kitty", desc = "the bad kitty")
+---------------------------------------------------------------------------
+IntegrityError                            Traceback (most recent call last)
+<ipython-input-6-56b82e6466fc> in <module>()
+----> 1 Books.objects.create(name="Hello Kitty", desc = "the bad kitty")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+IntegrityError: NOT NULL constraint failed: LikesBooks_app_books.updated_at
+
+In [7]:                                                                         
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/Likes_Books/likesbooks/apps/LikesBooks_app/models.py", line 16, in <module>
+    class Books(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/Likes_Books/likesbooks/apps/LikesBooks_app/models.py", line 20, in Books
+    uploader = models.ForeignKey(User, related_name="uploaded_books")
+NameError: name 'User' is not defined
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'uploader' to books without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'uploader' to books without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> Nul 
+Invalid input: name 'Nul' is not defined
+>>> timezone.now
+Migrations for 'LikesBooks_app':
+  apps/LikesBooks_app/migrations/0004_auto_20171017_0449.py:
+    - Remove field Users from books
+    - Add field liked_by to books
+    - Add field uploader to books
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: LikesBooks_app, admin, auth, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying LikesBooks_app.0002_auto_20171017_0436...Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 359, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/base.py", line 305, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/base.py", line 356, in execute
+    output = self.handle(*args, **options)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/commands/migrate.py", line 202, in handle
+    targets, plan, fake=fake, fake_initial=fake_initial
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 97, in migrate
+    state = self._migrate_all_forwards(plan, full_plan, fake=fake, fake_initial=fake_initial)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 132, in _migrate_all_forwards
+    state = self.apply_migration(state, migration, fake=fake, fake_initial=fake_initial)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 237, in apply_migration
+    state = migration.apply(state, schema_editor)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/migration.py", line 129, in apply
+    operation.database_forwards(self.app_label, schema_editor, old_state, project_state)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/operations/fields.py", line 84, in database_forwards
+    field,
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/schema.py", line 231, in add_field
+    self._remake_table(model, create_fields=[field])
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/schema.py", line 113, in _remake_table
+    self.effective_default(field)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/base/schema.py", line 221, in effective_default
+    default = field.get_db_prep_save(default, self.connection)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/related.py", line 909, in get_db_prep_save
+    return self.target_field.get_db_prep_save(value, connection=connection)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 755, in get_db_prep_save
+    prepared=False)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 938, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 946, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string or a number, not 'datetime.datetime'
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: LikesBooks_app, admin, auth, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying LikesBooks_app.0002_auto_20171017_0436...Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 359, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/base.py", line 305, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/base.py", line 356, in execute
+    output = self.handle(*args, **options)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/commands/migrate.py", line 202, in handle
+    targets, plan, fake=fake, fake_initial=fake_initial
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 97, in migrate
+    state = self._migrate_all_forwards(plan, full_plan, fake=fake, fake_initial=fake_initial)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 132, in _migrate_all_forwards
+    state = self.apply_migration(state, migration, fake=fake, fake_initial=fake_initial)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/executor.py", line 237, in apply_migration
+    state = migration.apply(state, schema_editor)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/migration.py", line 129, in apply
+    operation.database_forwards(self.app_label, schema_editor, old_state, project_state)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/migrations/operations/fields.py", line 84, in database_forwards
+    field,
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/schema.py", line 231, in add_field
+    self._remake_table(model, create_fields=[field])
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/schema.py", line 113, in _remake_table
+    self.effective_default(field)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/base/schema.py", line 221, in effective_default
+    default = field.get_db_prep_save(default, self.connection)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/related.py", line 909, in get_db_prep_save
+    return self.target_field.get_db_prep_save(value, connection=connection)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 755, in get_db_prep_save
+    prepared=False)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 938, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.py", line 946, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string or a number, not 'datetime.datetime'
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.{{app_name}}.models import *
+  File "<ipython-input-1-3f75ca4bcbfd>", line 1
+    from apps.{{app_name}}.models import *
+              ^
+SyntaxError: invalid syntax
+
+
+In [2]: from apps.likesbooks_app.models import *
+---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+<ipython-input-2-1cc58e8e8595> in <module>()
+----> 1 from apps.likesbooks_app.models import *
+
+ImportError: No module named likesbooks_app.models
+
+In [3]: from apps.LikesBooks_app.models import *
+
+In [4]: Books.objects.create(name="Lost Sea",desc="Funny")
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-4-c22c757584cf> in <module>()
+----> 1 Books.objects.create(name="Lost Sea",desc="Funny")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: table LikesBooks_app_books has no column named uploader_id
+
+In [5]: Users.objects.create(first_name="Jane",last_name="Doe",email="forty@gmai
+   ...: l.com")
+Out[5]: <Users object: Jane Doe forty@gmail.com>
+
+In [6]: Users.objects.create(first_name="Joe",last_name="Doe",email="forty@gmail
+   ...: .com")
+Out[6]: <Users object: Joe Doe forty@gmail.com>
+
+In [7]: Users.objects.create(first_name="Rick",last_name="Stein",email="forty@gm
+   ...: ail.com")
+Out[7]: <Users object: Rick Stein forty@gmail.com>
+
+In [8]: Users.objects.create(first_name="Tom",last_name="hart",email="forty@gmai
+   ...: l.com")
+Out[8]: <Users object: Tom hart forty@gmail.com>
+
+In [9]: foreignBook = Books.objects.get(first_name="Jane")
+---------------------------------------------------------------------------
+FieldError                                Traceback (most recent call last)
+<ipython-input-9-927cf6a31ba0> in <module>()
+----> 1 foreignBook = Books.objects.get(first_name="Jane")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in get(self, *args, **kwargs)
+    374         keyword arguments.
+    375         """
+--> 376         clone = self.filter(*args, **kwargs)
+    377         if self.query.can_filter() and not self.query.distinct_fields:
+    378             clone = clone.order_by()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in filter(self, *args, **kwargs)
+    792         set.
+    793         """
+--> 794         return self._filter_or_exclude(False, *args, **kwargs)
+    795 
+    796     def exclude(self, *args, **kwargs):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _filter_or_exclude(self, negate, *args, **kwargs)
+    810             clone.query.add_q(~Q(*args, **kwargs))
+    811         else:
+--> 812             clone.query.add_q(Q(*args, **kwargs))
+    813         return clone
+    814 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/query.pyc in add_q(self, q_object)
+   1225         existing_inner = set(
+   1226             (a for a in self.alias_map if self.alias_map[a].join_type == INNER))
+-> 1227         clause, _ = self._add_q(q_object, self.used_aliases)
+   1228         if clause:
+   1229             self.where.add(clause, AND)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/query.pyc in _add_q(self, q_object, used_aliases, branch_negated, current_negated, allow_joins, split_subq)
+   1251                     child, can_reuse=used_aliases, branch_negated=branch_negated,
+   1252                     current_negated=current_negated, connector=connector,
+-> 1253                     allow_joins=allow_joins, split_subq=split_subq,
+   1254                 )
+   1255                 joinpromoter.add_votes(needed_inner)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/query.pyc in build_filter(self, filter_expr, branch_negated, current_negated, can_reuse, connector, allow_joins, split_subq)
+   1131         if not arg:
+   1132             raise FieldError("Cannot parse keyword query %r" % arg)
+-> 1133         lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+   1134         if not allow_joins and len(parts) > 1:
+   1135             raise FieldError("Joined field references are not permitted in this query")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/query.pyc in solve_lookup_type(self, lookup)
+   1017             if expression:
+   1018                 return expression_lookups, (), expression
+-> 1019         _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+   1020         field_parts = lookup_splitted[0:len(lookup_splitted) - len(lookup_parts)]
+   1021         if len(lookup_parts) == 0:
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/query.pyc in names_to_path(self, names, opts, allow_many, fail_on_missing)
+   1325                     available = sorted(field_names + list(self.annotation_select))
+   1326                     raise FieldError("Cannot resolve keyword %r into field. "
+-> 1327                                      "Choices are: %s" % (name, ", ".join(available)))
+   1328                 break
+   1329             # Check if we need any joins for concrete inheritance cases (the
+
+FieldError: Cannot resolve keyword 'first_name' into field. Choices are: created_at, desc, id, liked_by, name, uploader, uploader_id
+
+In [10]: foreignBook = Books.objects.get(name="Jane")
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-10-50c1cc28bb9e> in <module>()
+----> 1 foreignBook = Books.objects.get(name="Jane")
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in get(self, *args, **kwargs)
+    377         if self.query.can_filter() and not self.query.distinct_fields:
+    378             clone = clone.order_by()
+--> 379         num = len(clone)
+    380         if num == 1:
+    381             return clone._result_cache[0]
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in __len__(self)
+    236 
+    237     def __len__(self):
+--> 238         self._fetch_all()
+    239         return len(self._result_cache)
+    240 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _fetch_all(self)
+   1083     def _fetch_all(self):
+   1084         if self._result_cache is None:
+-> 1085             self._result_cache = list(self.iterator())
+   1086         if self._prefetch_related_lookups and not self._prefetch_done:
+   1087             self._prefetch_related_objects()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in __iter__(self)
+     52         # Execute the query. This will also fill compiler.select, klass_info,
+     53         # and annotations.
+---> 54         results = compiler.execute_sql()
+     55         select, klass_info, annotation_col_map = (compiler.select, compiler.klass_info,
+     56                                                   compiler.annotation_col_map)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, result_type)
+    833         cursor = self.connection.cursor()
+    834         try:
+--> 835             cursor.execute(sql, params)
+    836         except Exception:
+    837             cursor.close()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: no such column: LikesBooks_app_books.uploader_id
+
+In [11]: foreignBook = Users.objects.get(first_name="Jane")
+
+In [12]: Books.objects.create(name="Life of Thao", desce="Ho Ho Ho", uploader= f
+    ...: oreignBook)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-12-ed5a060879da> in <module>()
+----> 1 Books.objects.create(name="Life of Thao", desce="Ho Ho Ho", uploader= foreignBook)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    395         and returning the created object.
+    396         """
+--> 397         obj = self.model(**kwargs)
+    398         self._for_write = True
+    399         obj.save(force_insert=True, using=self.db)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in __init__(self, *args, **kwargs)
+    553                     pass
+    554             if kwargs:
+--> 555                 raise TypeError("'%s' is an invalid keyword argument for this function" % list(kwargs)[0])
+    556         super(Model, self).__init__()
+    557         signals.post_init.send(sender=self.__class__, instance=self)
+
+TypeError: 'desce' is an invalid keyword argument for this function
+
+In [13]: Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader= fo
+    ...: reignBook)
+---------------------------------------------------------------------------
+OperationalError                          Traceback (most recent call last)
+<ipython-input-13-452aa23e228e> in <module>()
+----> 1 Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader= foreignBook)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1052         with self.connection.cursor() as cursor:
+   1053             for sql, params in self.as_sql():
+-> 1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+   1056                 return
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     77         start = time()
+     78         try:
+---> 79             return super(CursorDebugWrapper, self).execute(sql, params)
+     80         finally:
+     81             stop = time()
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/utils.pyc in __exit__(self, exc_type, exc_value, traceback)
+     92                 if dj_exc_type not in (DataError, IntegrityError):
+     93                     self.wrapper.errors_occurred = True
+---> 94                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+     95 
+     96     def __call__(self, func):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/utils.pyc in execute(self, sql, params)
+     62                 return self.cursor.execute(sql)
+     63             else:
+---> 64                 return self.cursor.execute(sql, params)
+     65 
+     66     def executemany(self, sql, param_list):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/backends/sqlite3/base.pyc in execute(self, query, params)
+    335             return Database.Cursor.execute(self, query)
+    336         query = self.convert_query(query)
+--> 337         return Database.Cursor.execute(self, query, params)
+    338 
+    339     def executemany(self, query, param_list):
+
+OperationalError: table LikesBooks_app_books has no column named uploader_id
+
+In [14]: Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader_id=
+    ...:  foreignBook)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-14-ffc743c1c51b> in <module>()
+----> 1 Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader_id= foreignBook)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    397         obj = self.model(**kwargs)
+    398         self._for_write = True
+--> 399         obj.save(force_insert=True, using=self.db)
+    400         return obj
+    401 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save(self, force_insert, force_update, using, update_fields)
+    794 
+    795         self.save_base(using=using, force_insert=force_insert,
+--> 796                        force_update=force_update, update_fields=update_fields)
+    797     save.alters_data = True
+    798 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in save_base(self, raw, force_insert, force_update, using, update_fields)
+    822             if not raw:
+    823                 self._save_parents(cls, using, update_fields)
+--> 824             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+    825         # Store the database on which the object was saved
+    826         self._state.db = using
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _save_table(self, raw, cls, force_insert, force_update, using, update_fields)
+    906 
+    907             update_pk = bool(meta.has_auto_field and not pk_set)
+--> 908             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+    909             if update_pk:
+    910                 setattr(self, meta.pk.attname, result)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/base.pyc in _do_insert(self, manager, using, fields, update_pk, raw)
+    945         """
+    946         return manager._insert([self], fields=fields, return_id=update_pk,
+--> 947                                using=using, raw=raw)
+    948 
+    949     def delete(self, using=None, keep_parents=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in _insert(self, objs, fields, return_id, raw, using)
+   1041         query = sql.InsertQuery(self.model)
+   1042         query.insert_values(fields, objs, raw=raw)
+-> 1043         return query.get_compiler(using=using).execute_sql(return_id)
+   1044     _insert.alters_data = True
+   1045     _insert.queryset_only = False
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in execute_sql(self, return_id)
+   1051         self.return_id = return_id
+   1052         with self.connection.cursor() as cursor:
+-> 1053             for sql, params in self.as_sql():
+   1054                 cursor.execute(sql, params)
+   1055             if not (return_id and cursor):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in as_sql(self)
+   1004             value_rows = [
+   1005                 [self.prepare_value(field, self.pre_save_val(field, obj)) for field in fields]
+-> 1006                 for obj in self.query.objs
+   1007             ]
+   1008         else:
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/sql/compiler.pyc in prepare_value(self, field, value)
+    943                 raise FieldError("Aggregate functions are not allowed in this query")
+    944         else:
+--> 945             value = field.get_db_prep_save(value, connection=self.connection)
+    946         return value
+    947 
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/related.pyc in get_db_prep_save(self, value, connection)
+    907             return None
+    908         else:
+--> 909             return self.target_field.get_db_prep_save(value, connection=connection)
+    910 
+    911     def get_db_prep_value(self, value, connection, prepared=False):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.pyc in get_db_prep_save(self, value, connection)
+    753         """
+    754         return self.get_db_prep_value(value, connection=connection,
+--> 755                                       prepared=False)
+    756 
+    757     def has_default(self):
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.pyc in get_db_prep_value(self, value, connection, prepared)
+    936     def get_db_prep_value(self, value, connection, prepared=False):
+    937         if not prepared:
+--> 938             value = self.get_prep_value(value)
+    939             value = connection.ops.validate_autopk_value(value)
+    940         return value
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/fields/__init__.pyc in get_prep_value(self, value)
+    944         if value is None:
+    945             return None
+--> 946         return int(value)
+    947 
+    948     def contribute_to_class(self, cls, name, **kwargs):
+
+TypeError: int() argument must be a string or a number, not 'Users'
+
+In [15]: Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader_id=
+    ...:  Int(oreignBook))
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-15-120e9148470a> in <module>()
+----> 1 Books.objects.create(name="Life of Thao", desc="Ho Ho Ho", uploader_id= Int(oreignBook))
+
+NameError: name 'Int' is not defined
+
+In [16]:                                                                        
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:likesbooks sammiae$ 

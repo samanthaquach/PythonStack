@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+    {% for User in users %}
+        <tr>
+            <td>
+            
+            {{ User.id }} <a href="users/{{ User.id }}">{{ User.first_name }} {{ User.last_name }}</a> {{ User.email }} {{User.created_at}}
+            </td>
+        </tr>
+
+    {% endfor %}
+    </table>
+
+    <form action='/addUser' method='Get'>
+        <button>Add User</button>
+    </form>
+    
+</body>
+</html>

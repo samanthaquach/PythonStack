@@ -1,0 +1,104 @@
+Last login: Mon Oct 16 15:22:41 on ttys002
+Samanthas-MacBook-Air:~ sammiae$ cd documents
+Samanthas-MacBook-Air:documents sammiae$ cd pythstack
+Samanthas-MacBook-Air:pythstack sammiae$ cd django
+Samanthas-MacBook-Air:django sammiae$ ls
+RandomWord	Survey_Form	Users
+Session_Words	Time		exampleKitty
+Samanthas-MacBook-Air:django sammiae$ cd users
+Samanthas-MacBook-Air:users sammiae$ cd users
+Samanthas-MacBook-Air:users sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:users sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, users_app
+Running migrations:
+  No migrations to apply.
+Samanthas-MacBook-Air:users sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.Users.models import *
+---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+<ipython-input-1-46b8e8a1732c> in <module>()
+----> 1 from apps.Users.models import *
+
+ImportError: No module named Users.models
+
+In [2]: from apps.users_app.models import *
+
+In [3]: Users.Objects.first()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-3-77815503c65f> in <module>()
+----> 1 Users.Objects.first()
+
+AttributeError: type object 'Users' has no attribute 'Objects'
+
+In [4]: Users.objects.create(first_name="Sara",last_name="Sam", email_address="c
+   ...: ool@gmail.com", age ="24")
+Out[4]: <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>
+
+In [5]: Users.objects.create(first_name="Sasha",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[5]: <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>
+
+In [6]: Users.objects.create(first_name="Sonia",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[6]: <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>
+
+In [7]: Users.objects.create(first_name="Sunny",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[7]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [8]: Users.objects.first()
+Out[8]: <Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>
+
+In [9]: users.object.last()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-9-253f0261cddd> in <module>()
+----> 1 users.object.last()
+
+NameError: name 'users' is not defined
+
+In [10]: Users.object.last()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-10-e335efae63fa> in <module>()
+----> 1 Users.object.last()
+
+AttributeError: type object 'Users' has no attribute 'object'
+
+In [11]: Users.objects.last()
+Out[11]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [12]: Users.objects.count()
+Out[12]: 8
+
+In [13]: Users.objects.order_by("first_name")
+Out[13]: <QuerySet [<Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:11:27.433286+00:00 2017-10-16 21:11:27.433392+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 20:59:18.870428+00:00 2017-10-16 20:59:18.870537+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>, <Users object: Sonia Quach cool@gmail.com 24 2017-10-16 20:59:32.990330+00:00 2017-10-16 21:05:05.571858+00:00>, <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>, <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>]>
+
+In [14]: Users.objects.get(id=1)
+Out[14]: <Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>
+
+In [15]: b = Users.objects.get(id=3)
+
+In [16]: b.first_name = "Zoya"
+
+In [17]: b.save()
+
+In [18]: Users.objects.last()
+Out[18]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [19]: Users.objects.order_by("first_name")
+Out[19]: <QuerySet [<Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:11:27.433286+00:00 2017-10-16 21:11:27.433392+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 20:59:18.870428+00:00 2017-10-16 20:59:18.870537+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>, <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>, <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>, <Users object: Zoya Quach cool@gmail.com 24 2017-10-16 20:59:32.990330+00:00 2017-10-16 21:26:05.062492+00:00>]>
+
+In [20]:                                     

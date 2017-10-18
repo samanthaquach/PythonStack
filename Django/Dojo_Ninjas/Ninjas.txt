@@ -1,0 +1,760 @@
+Last login: Mon Oct 16 15:22:41 on ttys002
+Samanthas-MacBook-Air:~ sammiae$ cd documents
+Samanthas-MacBook-Air:documents sammiae$ cd pythstack
+Samanthas-MacBook-Air:pythstack sammiae$ cd django
+Samanthas-MacBook-Air:django sammiae$ ls
+RandomWord	Survey_Form	Users
+Session_Words	Time		exampleKitty
+Samanthas-MacBook-Air:django sammiae$ cd users
+Samanthas-MacBook-Air:users sammiae$ cd users
+Samanthas-MacBook-Air:users sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:users sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, users_app
+Running migrations:
+  No migrations to apply.
+Samanthas-MacBook-Air:users sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.Users.models import *
+---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+<ipython-input-1-46b8e8a1732c> in <module>()
+----> 1 from apps.Users.models import *
+
+ImportError: No module named Users.models
+
+In [2]: from apps.users_app.models import *
+
+In [3]: Users.Objects.first()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-3-77815503c65f> in <module>()
+----> 1 Users.Objects.first()
+
+AttributeError: type object 'Users' has no attribute 'Objects'
+
+In [4]: Users.objects.create(first_name="Sara",last_name="Sam", email_address="c
+   ...: ool@gmail.com", age ="24")
+Out[4]: <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>
+
+In [5]: Users.objects.create(first_name="Sasha",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[5]: <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>
+
+In [6]: Users.objects.create(first_name="Sonia",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[6]: <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>
+
+In [7]: Users.objects.create(first_name="Sunny",last_name="Sam", email_address="
+   ...: cool@gmail.com", age ="24")
+Out[7]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [8]: Users.objects.first()
+Out[8]: <Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>
+
+In [9]: users.object.last()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-9-253f0261cddd> in <module>()
+----> 1 users.object.last()
+
+NameError: name 'users' is not defined
+
+In [10]: Users.object.last()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-10-e335efae63fa> in <module>()
+----> 1 Users.object.last()
+
+AttributeError: type object 'Users' has no attribute 'object'
+
+In [11]: Users.objects.last()
+Out[11]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [12]: Users.objects.count()
+Out[12]: 8
+
+In [13]: Users.objects.order_by("first_name")
+Out[13]: <QuerySet [<Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:11:27.433286+00:00 2017-10-16 21:11:27.433392+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 20:59:18.870428+00:00 2017-10-16 20:59:18.870537+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>, <Users object: Sonia Quach cool@gmail.com 24 2017-10-16 20:59:32.990330+00:00 2017-10-16 21:05:05.571858+00:00>, <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>, <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>]>
+
+In [14]: Users.objects.get(id=1)
+Out[14]: <Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>
+
+In [15]: b = Users.objects.get(id=3)
+
+In [16]: b.first_name = "Zoya"
+
+In [17]: b.save()
+
+In [18]: Users.objects.last()
+Out[18]: <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>
+
+In [19]: Users.objects.order_by("first_name")
+Out[19]: <QuerySet [<Users object: Sam Sam @gmail 24 2017-10-16 20:56:31.529344+00:00 2017-10-16 20:56:31.531094+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:11:27.433286+00:00 2017-10-16 21:11:27.433392+00:00>, <Users object: Sara Sam cool@gmail.com 24 2017-10-16 21:20:28.927817+00:00 2017-10-16 21:20:28.927893+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 20:59:18.870428+00:00 2017-10-16 20:59:18.870537+00:00>, <Users object: Sasha Sam cool@gmail.com 24 2017-10-16 21:21:54.403639+00:00 2017-10-16 21:21:54.403746+00:00>, <Users object: Sonia Sam cool@gmail.com 24 2017-10-16 21:22:31.072504+00:00 2017-10-16 21:22:31.072585+00:00>, <Users object: Sunny Sam cool@gmail.com 24 2017-10-16 21:22:39.439913+00:00 2017-10-16 21:22:39.439990+00:00>, <Users object: Zoya Quach cool@gmail.com 24 2017-10-16 20:59:32.990330+00:00 2017-10-16 21:26:05.062492+00:00>]>
+
+In [20]:                                                                        
+Do you really want to exit ([y]/n)? y
+Samanthas-MacBook-Air:users sammiae$ cd ..
+Samanthas-MacBook-Air:users sammiae$ cd ..
+Samanthas-MacBook-Air:django sammiae$ cd ..
+Samanthas-MacBook-Air:pythstack sammiae$ cd django
+Samanthas-MacBook-Air:django sammiae$ mkdir Dojo_Ninjas
+Samanthas-MacBook-Air:django sammiae$ cd Dojo_ninjas
+Samanthas-MacBook-Air:Dojo_ninjas sammiae$ django-admin startproject ninjas
+Samanthas-MacBook-Air:Dojo_ninjas sammiae$ cd ninjas
+Samanthas-MacBook-Air:ninjas sammiae$ mkdir apps
+Samanthas-MacBook-Air:ninjas sammiae$ cd apps
+Samanthas-MacBook-Air:apps sammiae$ touch __init__.py
+Samanthas-MacBook-Air:apps sammiae$ python ../manage.py startapp ninjas_app
+Samanthas-MacBook-Air:apps sammiae$ cd ..
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+October 16, 2017 - 21:38:11
+Django version 1.11.5, using settings 'ninjas.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[16/Oct/2017 21:38:18] "GET / HTTP/1.1" 200 1716
+Performing system checks...
+
+Unhandled exception in thread started by <function wrapper at 0x103c57b18>
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/utils/autoreload.py", line 228, in wrapper
+    fn(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/django/core/management/commands/runserver.py", line 125, in inner_run
+    self.check(display_num_errors=True)
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 359, in check
+    include_deployment_checks=include_deployment_checks,
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 346, in _run_checks
+    return checks.run_checks(**kwargs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/registry.py", line 81, in run_checks
+    new_errors = check(app_configs=app_configs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 16, in check_url_config
+    return check_resolver(resolver)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 26, in check_resolver
+    return check_method()
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 254, in check
+    for pattern in self.url_patterns:
+  File "/Library/Python/2.7/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Library/Python/2.7/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/ninjas/urls.py", line 21, in <module>
+    url(r'^', include('apps.ninjas_app.urls'))
+  File "/Library/Python/2.7/site-packages/django/conf/urls/__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+ImportError: No module named urls
+^CSamanthas-MacBook-Air:ninjas sammiae$ python manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+October 16, 2017 - 21:41:51
+Django version 1.11.5, using settings 'ninjas.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/apps/ninjas_app/views.py", line 6, in index
+    return render(request, 'ninjas/index.html')
+  File "/Library/Python/2.7/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Python/2.7/site-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Python/2.7/site-packages/django/template/loader.py", line 25, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+TemplateDoesNotExist: ninjas/index.html
+[16/Oct/2017 21:41:53] "GET / HTTP/1.1" 500 76494
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+October 16, 2017 - 21:42:00
+Django version 1.11.5, using settings 'ninjas.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[16/Oct/2017 21:42:01] "GET / HTTP/1.1" 200 274
+[16/Oct/2017 21:42:03] "GET / HTTP/1.1" 200 274
+[16/Oct/2017 21:42:22] "GET / HTTP/1.1" 200 280
+^CSamanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying sessions.0001_initial... OK
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+  Your models have changes that are not yet reflected in a migration, and so won't be applied.
+  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+Migrations for 'ninjas_app':
+  apps/ninjas_app/migrations/0001_initial.py
+    - Create model dojos
+    - Create model ninjas
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninjas_app, sessions
+Running migrations:
+  Applying ninjas_app.0001_initial... OK
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.ninjas_app.models import *
+
+In [2]:                                                                         
+Do you really want to exit ([y]/n)? y
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninjas_app, sessions
+Running migrations:
+  No migrations to apply.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.ninjas_app.models import *
+
+In [2]: Blog.objects.create(name="CodingDojo Silicon Valley", city="Mountain Vie
+   ...: w", state = "CA")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-3de7d6c8022d> in <module>()
+----> 1 Blog.objects.create(name="CodingDojo Silicon Valley", city="Mountain View", state = "CA")
+
+NameError: name 'Blog' is not defined
+
+In [3]: ninjas.objects.create(name="CodingDojo Silicon Valley", city="Mountain V
+   ...: iew", state = "CA")
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-3-3542d6d0618e> in <module>()
+----> 1 ninjas.objects.create(name="CodingDojo Silicon Valley", city="Mountain View", state = "CA")
+
+/Library/Python/2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Library/Python/2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    390         and returning the created object.
+    391         """
+--> 392         obj = self.model(**kwargs)
+    393         self._for_write = True
+    394         obj.save(force_insert=True, using=self.db)
+
+/Library/Python/2.7/site-packages/django/db/models/base.pyc in __init__(self, *args, **kwargs)
+    570                     pass
+    571             if kwargs:
+--> 572                 raise TypeError("'%s' is an invalid keyword argument for this function" % list(kwargs)[0])
+    573         super(Model, self).__init__()
+    574         post_init.send(sender=cls, instance=self)
+
+TypeError: 'city' is an invalid keyword argument for this function
+
+In [4]: ninjas.objects.create(name="CodingDojo Silicon Valley", city= "Mountain 
+   ...: View", state = "CA")
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-4-177a10fa9a0a> in <module>()
+----> 1 ninjas.objects.create(name="CodingDojo Silicon Valley", city= "Mountain View", state = "CA")
+
+/Library/Python/2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Library/Python/2.7/site-packages/django/db/models/query.pyc in create(self, **kwargs)
+    390         and returning the created object.
+    391         """
+--> 392         obj = self.model(**kwargs)
+    393         self._for_write = True
+    394         obj.save(force_insert=True, using=self.db)
+
+/Library/Python/2.7/site-packages/django/db/models/base.pyc in __init__(self, *args, **kwargs)
+    570                     pass
+    571             if kwargs:
+--> 572                 raise TypeError("'%s' is an invalid keyword argument for this function" % list(kwargs)[0])
+    573         super(Model, self).__init__()
+    574         post_init.send(sender=cls, instance=self)
+
+TypeError: 'city' is an invalid keyword argument for this function
+
+In [5]:                                                                         
+Do you really want to exit ([y]/n)? y
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+No changes detected
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninjas_app, sessions
+Running migrations:
+  No migrations to apply.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.ninjas_app.models import *
+
+In [2]: dojos.objects.create(name="CodingDojo Silicon Valley", city= "Mountain V
+   ...: iew", state = "CA")
+Out[2]: <Users object: CodingDojo Silicon Valley Mountain View CA 2017-10-16 22:05:18.261826+00:00 2017-10-16 22:05:18.261921+00:00>
+
+In [3]: dojos.objects.create(name="CodingDojo Seattle", city= "Seattle", state =
+   ...:  "WA")
+Out[3]: <Users object: CodingDojo Seattle Seattle WA 2017-10-16 22:07:01.813418+00:00 2017-10-16 22:07:01.813497+00:00>
+
+In [4]: dojos.objects.create(name="CodingDojo New York", city= "New York", state
+   ...:  = "NY")
+Out[4]: <Users object: CodingDojo New York New York NY 2017-10-16 22:07:46.786710+00:00 2017-10-16 22:07:46.786771+00:00>
+
+In [5]: foreignDojo = dojo.objects.get(name="CodingDojo Silicon Valley")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-5-ec24a449080f> in <module>()
+----> 1 foreignDojo = dojo.objects.get(name="CodingDojo Silicon Valley")
+
+NameError: name 'dojo' is not defined
+
+In [6]: foreignDojo = dojos.objects.get(name="CodingDojo Silicon Valley")
+
+In [7]: ninjas.objects.create(first_name="Sam", last_name="Quach", dojos = forei
+   ...: gnDojo)
+Out[7]: <Users object: Sam Quach dojos object>
+
+In [8]: foreignDojo = dojos.objects.get(name="CodingDojo New York")
+
+In [9]: ninjas.objects.create(first_name="Joe", last_name="Quach", dojos = forei
+   ...: 
+   ...:    ...: gnDojo)
+  File "<ipython-input-9-8646f080ae31>", line 2
+    gnDojo)
+         ^
+SyntaxError: invalid syntax
+
+
+In [10]: ninjas.objects.create(first_name="Joe", last_name="Quach", dojos = fore
+    ...: i gnDojo)
+  File "<ipython-input-10-d2e01550464d>", line 1
+    ninjas.objects.create(first_name="Joe", last_name="Quach", dojos = forei gnDojo)
+                                                                                  ^
+SyntaxError: invalid syntax
+
+
+In [11]: foreignDojo = dojos.objects.get(name="CodingDojo New York")
+
+In [12]: ninjas.objects.create(first_name="Joe", last_name="Quach", dojos = fore
+    ...: ignDojo)
+Out[12]: <Users object: Joe Quach dojos object>
+
+In [13]: foreignDojo = dojos.objects.get(name="CodingDojo Seattle")
+
+In [14]: ninjas.objects.create(first_name="Thao", last_name="Ho", dojos = foreig
+    ...: nDojo)
+Out[14]: <Users object: Thao Ho dojos object>
+
+In [15]:                                                                        
+Do you really want to exit ([y]/n)? y
+Samanthas-MacBook-Air:ninjas sammiae$ cd ..
+Samanthas-MacBook-Air:Dojo_ninjas sammiae$ cd ..
+Samanthas-MacBook-Air:django sammiae$ cd dojo_ninjas
+Samanthas-MacBook-Air:dojo_ninjas sammiae$ ls
+ninjas
+Samanthas-MacBook-Air:dojo_ninjas sammiae$ cd ninjas
+Samanthas-MacBook-Air:ninjas sammiae$ ls
+apps		db.sqlite3	manage.py	ninjas
+Samanthas-MacBook-Air:ninjas sammiae$ cd ..
+Samanthas-MacBook-Air:dojo_ninjas sammiae$ cd ninjas
+Samanthas-MacBook-Air:ninjas sammiae$ cd apps
+Samanthas-MacBook-Air:apps sammiae$ python ../manage.py startapp dojoninjas_app
+Samanthas-MacBook-Air:apps sammiae$ cd ..
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 364, in execute_from_command_line
+    utility.execute()
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 356, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 283, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 327, in execute
+    self.check()
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 359, in check
+    include_deployment_checks=include_deployment_checks,
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 346, in _run_checks
+    return checks.run_checks(**kwargs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/registry.py", line 81, in run_checks
+    new_errors = check(app_configs=app_configs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 16, in check_url_config
+    return check_resolver(resolver)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 26, in check_resolver
+    return check_method()
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 255, in check
+    warnings.extend(check_resolver(pattern))
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 26, in check_resolver
+    return check_method()
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 254, in check
+    for pattern in self.url_patterns:
+  File "/Library/Python/2.7/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 414, in url_patterns
+    raise ImproperlyConfigured(msg.format(name=self.urlconf_name))
+django.core.exceptions.ImproperlyConfigured: The included URLconf '<module 'apps.dojoninjas_app.urls' from '/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/apps/dojoninjas_app/urls.py'>' does not appear to have any patterns in it. If you see valid patterns in the file then the issue is probably caused by a circular import.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 364, in execute_from_command_line
+    utility.execute()
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 356, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 283, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 327, in execute
+    self.check()
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 359, in check
+    include_deployment_checks=include_deployment_checks,
+  File "/Library/Python/2.7/site-packages/django/core/management/commands/migrate.py", line 62, in _run_checks
+    issues.extend(super(Command, self)._run_checks(**kwargs))
+  File "/Library/Python/2.7/site-packages/django/core/management/base.py", line 346, in _run_checks
+    return checks.run_checks(**kwargs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/registry.py", line 81, in run_checks
+    new_errors = check(app_configs=app_configs)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 16, in check_url_config
+    return check_resolver(resolver)
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 26, in check_resolver
+    return check_method()
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 255, in check
+    warnings.extend(check_resolver(pattern))
+  File "/Library/Python/2.7/site-packages/django/core/checks/urls.py", line 26, in check_resolver
+    return check_method()
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 254, in check
+    for pattern in self.url_patterns:
+  File "/Library/Python/2.7/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Library/Python/2.7/site-packages/django/urls/resolvers.py", line 414, in url_patterns
+    raise ImproperlyConfigured(msg.format(name=self.urlconf_name))
+django.core.exceptions.ImproperlyConfigured: The included URLconf '<module 'apps.dojoninjas_app.urls' from '/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/apps/dojoninjas_app/urls.pyc'>' does not appear to have any patterns in it. If you see valid patterns in the file then the issue is probably caused by a circular import.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.ninjas_app.models import *
+
+In [2]: dojo.objects.first().ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-f0af56977ab9> in <module>()
+----> 1 dojo.objects.first().ninjas.all()
+
+NameError: name 'dojo' is not defined
+
+In [3]: dojos.objects.first().ninjas.all()
+Out[3]: <QuerySet [<Users object: Sam Quach dojos object>]>
+
+In [4]: ninjas.objects.first().dojo
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-4-7a7531979235> in <module>()
+----> 1 ninjas.objects.first().dojo
+
+AttributeError: 'ninjas' object has no attribute 'dojo'
+
+In [5]: ninja.objects.first().dojos
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-5-0364ced14370> in <module>()
+----> 1 ninja.objects.first().dojos
+
+NameError: name 'ninja' is not defined
+
+In [6]: ninjas.objects.first().dojos
+Out[6]: <Users object: CodingDojo Silicon Valley Mountain View CA 2017-10-16 22:05:18.261826+00:00 2017-10-16 22:05:18.261921+00:00>
+
+In [7]: ninjas.objects.second().dojos
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-7-43ecb12a35af> in <module>()
+----> 1 ninjas.objects.second().dojos
+
+AttributeError: 'Manager' object has no attribute 'second'
+
+In [8]: ninjas.objects.()
+  File "<ipython-input-8-a04f237467e5>", line 1
+    ninjas.objects.()
+                   ^
+SyntaxError: invalid syntax
+
+
+In [9]: ninjas.objects()
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-9-9bd93ae5ca1d> in <module>()
+----> 1 ninjas.objects()
+
+TypeError: 'Manager' object is not callable
+
+In [10]: ninjas.objects.all()
+Out[10]: <QuerySet [<Users object: Sam Quach dojos object>, <Users object: Joe Quach dojos object>, <Users object: Thao Ho dojos object>]>
+
+In [11]: dojos.objects.all()
+Out[11]: <QuerySet [<Users object: CodingDojo Silicon Valley Mountain View CA 2017-10-16 22:05:18.261826+00:00 2017-10-16 22:05:18.261921+00:00>, <Users object: CodingDojo Seattle Seattle WA 2017-10-16 22:07:01.813418+00:00 2017-10-16 22:07:01.813497+00:00>, <Users object: CodingDojo New York New York NY 2017-10-16 22:07:46.786710+00:00 2017-10-16 22:07:46.786771+00:00>]>
+
+In [12]: 
+    ...: foreignDojo = dojos.objects.get(name="CodingDojo Seattle")
+
+In [13]: ninjas.objects.create(first_name="Brandon", last_name="Ho", dojos = foreignDojo)
+Out[13]: <Users object: Brandon Ho dojos object>
+
+In [14]: ninjas.objects.create(first_name="Bart", last_name="Ho", dojos = foreignDojo)
+Out[14]: <Users object: Bart Ho dojos object>
+
+In [15]: ninjas.objects.create(first_name="Thomas", last_name="Ho", dojos = foreignDojo)
+Out[15]: <Users object: Thomas Ho dojos object>
+
+In [16]: foreignDojo = dojos.objects.get(name="CodingDojo New York")
+
+In [17]: ninjas.objects.create(first_name="Tom", last_name="Riddle", dojos = foreignDojo)
+Out[17]: <Users object: Tom Riddle dojos object>
+
+In [18]: ninjas.objects.create(first_name="Harry", last_name="Potter", dojos = foreignDojo)
+Out[18]: <Users object: Harry Potter dojos object>
+
+In [19]: ninjas.objects.create(first_name="Hermoine", last_name="Granger", dojos = foreignDojo)
+Out[19]: <Users object: Hermoine Granger dojos object>
+
+In [20]: ninjas.objects.second().dojo
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-20-3127fec7136b> in <module>()
+----> 1 ninjas.objects.second().dojo
+
+AttributeError: 'Manager' object has no attribute 'second'
+
+In [21]: dojos..objects.get(id=2)
+  File "<ipython-input-21-aa2c161ab912>", line 1
+    dojos..objects.get(id=2)
+          ^
+SyntaxError: invalid syntax
+
+
+In [22]: dojos.objects.get(id=2)
+Out[22]: <Users object: CodingDojo Seattle Seattle WA 2017-10-16 22:07:01.813418+00:00 2017-10-16 22:07:01.813497+00:00>
+
+In [23]: b = dojos.objects.get(id=2)
+
+In [24]: b = Dojo.objects.ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-24-2dfa37b4d33c> in <module>()
+----> 1 b = Dojo.objects.ninjas.all()
+
+NameError: name 'Dojo' is not defined
+
+In [25]: Dojo.objects.ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-25-546105f5a664> in <module>()
+----> 1 Dojo.objects.ninjas.all()
+
+NameError: name 'Dojo' is not defined
+
+In [26]: Dojo.objects.get(id=2).ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-26-e46d9735eb21> in <module>()
+----> 1 Dojo.objects.get(id=2).ninjas.all()
+
+NameError: name 'Dojo' is not defined
+
+In [27]: Dojos.objects.get(id=2).ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-27-17c7ca5a55d3> in <module>()
+----> 1 Dojos.objects.get(id=2).ninjas.all()
+
+NameError: name 'Dojos' is not defined
+
+In [28]: Dojo.objects.first().ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-28-46eefbc13139> in <module>()
+----> 1 Dojo.objects.first().ninjas.all()
+
+NameError: name 'Dojo' is not defined
+
+In [29]: Dojos.objects.first().ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-29-b4c258cfa024> in <module>()
+----> 1 Dojos.objects.first().ninjas.all()
+
+NameError: name 'Dojos' is not defined
+
+In [30]: b.save()
+
+In [31]: Dojos.objects.first().ninjas.all()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-31-b4c258cfa024> in <module>()
+----> 1 Dojos.objects.first().ninjas.all()
+
+NameError: name 'Dojos' is not defined
+
+In [32]: dojos.objects.first().ninjas.all()
+Out[32]: <QuerySet [<Users object: Sam Quach dojos object>]>
+
+In [33]: dojos.objects.last().ninjas.all()
+Out[33]: <QuerySet [<Users object: Joe Quach dojos object>, <Users object: Tom Riddle dojos object>, <Users object: Harry Potter dojos object>, <Users object: Hermoine Granger dojos object>]>
+
+In [34]:                                                                                                        
+Do you really want to exit ([y]/n)? y
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojos without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 364, in execute_from_command_line
+    utility.execute()
+  File "/Library/Python/2.7/site-packages/django/core/management/__init__.py", line 338, in execute
+    django.setup()
+  File "/Library/Python/2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Library/Python/2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/Library/Python/2.7/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/apps/ninjas_app/models.py", line 8, in <module>
+    class dojos(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/Dojo_Ninjas/ninjas/apps/ninjas_app/models.py", line 12, in dojos
+    desc = models.TextField(min_length=255)
+TypeError: __init__() got an unexpected keyword argument 'min_length'
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojos without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> exit
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninjas_app, sessions
+Running migrations:
+  No migrations to apply.
+  Your models have changes that are not yet reflected in a migration, and so won't be applied.
+  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojos without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> Null
+Invalid input: name 'Null' is not defined
+>>> Python
+Invalid input: name 'Python' is not defined
+>>> timezone.now
+Migrations for 'ninjas_app':
+  apps/ninjas_app/migrations/0002_dojos_desc.py
+    - Add field desc to dojos
+Samanthas-MacBook-Air:ninjas sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninjas_app, sessions
+Running migrations:
+  Applying ninjas_app.0002_dojos_desc... OK
+Samanthas-MacBook-Air:ninjas sammiae$ 

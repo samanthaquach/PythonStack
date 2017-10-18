@@ -8,3 +8,11 @@ from django.shortcuts import render, HttpResponse, redirect
 def index(request):
 
     return render(request, 'sessionWords_app/index.html')
+
+def process(request):
+
+    return redirect('/results')
+
+def results(request):
+
+    return render(request, 'sessionWords_app/result.html')

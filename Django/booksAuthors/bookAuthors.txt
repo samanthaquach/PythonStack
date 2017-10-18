@@ -1,0 +1,915 @@
+Last login: Mon Oct 16 16:16:47 on ttys001
+Samanthas-MacBook-Air:~ sammiae$ source djangoEnv/bin/activate
+(djangoEnv) Samanthas-MacBook-Air:~ sammiae$ cd documents
+(djangoEnv) Samanthas-MacBook-Air:documents sammiae$ cd pythstack
+(djangoEnv) Samanthas-MacBook-Air:pythstack sammiae$ cd django
+(djangoEnv) Samanthas-MacBook-Air:django sammiae$ ls
+Dojo_Ninjas	Session_Words	Time		booksAuthors
+RandomWord	Survey_Form	Users		exampleKitty
+(djangoEnv) Samanthas-MacBook-Air:django sammiae$ cd booksAuthors
+(djangoEnv) Samanthas-MacBook-Air:booksAuthors sammiae$ cd booksauthors
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ ls
+apps		booksauthors	manage.py
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py runserver
+Unhandled exception in thread started by <function wrapper at 0x103ed1230>
+Traceback (most recent call last):
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 226, in wrapper
+    fn(*args, **kwargs)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/commands/runserver.py", line 113, in inner_run
+    autoreload.raise_last_exception()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 249, in raise_last_exception
+    six.reraise(*_exception)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 226, in wrapper
+    fn(*args, **kwargs)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 85, in populate
+    app_config = AppConfig.create(entry)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 123, in create
+    import_module(entry)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+ImportError: No module named booksauthors_app
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+October 17, 2017 - 00:55:26
+Django version 1.10, using settings 'booksauthors.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[17/Oct/2017 00:55:38] "GET / HTTP/1.1" 200 274
+^C(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py runseere
+Unhandled exception in thread started by <function wrapper at 0x10259faa0>
+Traceback (most recent call last):
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 226, in wrapper
+    fn(*args, **kwargs)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/commands/runserver.py", line 113, in inner_run
+    autoreload.raise_last_exception()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 249, in raise_last_exception
+    six.reraise(*_exception)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/utils/autoreload.py", line 226, in wrapper
+    fn(*args, **kwargs)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 14, in <module>
+    class Book(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 16, in Book
+    desc = models.textField(max_length=500)
+AttributeError: 'module' object has no attribute 'textField'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+October 17, 2017 - 00:57:34
+Django version 1.10, using settings 'booksauthors.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+^C(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemrations
+Migrations for 'booksAuthors_app':
+  apps/booksAuthors_app/migrations/0001_initial.py:
+    - Create model Author
+    - Create model Book
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying booksAuthors_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> >>> from apps.bookAuthors_app.models import *
+  File "<console>", line 1
+    from apps.{{apbookAuthors_app.models import *
+              ^
+SyntaxError: invalid syntax
+>>> from apps.bookAuthors_app.models import *
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: No module named bookAuthors_app.models
+>>> from apps.booksAuthors_app.models import *
+>>> Book.objects.create(name = "C sharp", desc = "all about C Sharp")
+<Book: Book object>
+>>> Book.objects.create(name = "Java", desc = "all about Java")
+<Book: Book object>
+>>> Book.objects.create(name = "Python", desc = "all about Python")
+<Book: Book object>
+>>> Book.objects.create(name = "PHP", desc = "all about PHP")
+<Book: Book object>
+>>> Book.objects.create(name = "Ruby", desc = "all about Ruby")
+<Book: Book object>
+>>> Author.objects.create(first_name = "Mike", last_name = "Example", email = "Mike@mike.com")
+<Author: Author object>
+>>> Author.objects.create(first_name = "Speros", last_name = "Ejemplo", email = "Speros@mike.com")
+<Author: Author object>
+>>> Author.objects.create(first_name = "John", last_name = "Doe", email = "John@Doe.com") 
+<Author: Author object>
+>>> Author.objects.create(first_name = "Jadee", last_name = "Yat", email = "Jadee@yat.com")
+<Author: Author object>
+>>> Author.objects.create(first_name = "Jay", last_name = "Wei", email = "Jay@Wei.com")
+<Author: Author object>
+>>> Bookie = Book.objects.get(id=1)
+>>> Authy = Author.objects.get(id=1)
+>>> Authy.books.add(Bookie)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Author' object has no attribute 'books'
+>>> ^D
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 14, in <module>
+    class Book(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 17, in Book
+    books = models.ManyToManyField(Book, related_name="Authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 14, in <module>
+    class Book(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 17, in Book
+    books = models.ManyToManyField(Book, related_name="Authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 12, in Author
+    books = models.ManyToManyField(Book, related_name="Authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 12, in Author
+    books = models.ManyToManyField(related_name="Authors")
+TypeError: __init__() takes at least 2 arguments (2 given)
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 12, in Author
+    books = models.ManyToManyField(Book)
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Migrations for 'booksAuthors_app':
+  apps/booksAuthors_app/migrations/0002_author_books.py:
+    - Add field books to author
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying booksAuthors_app.0002_author_books... OK
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> >>> 
+>>> from apps.booksAuthors_app.models import *
+>>> Bookie = Book.objects.get(id=1)
+>>> Authy = Author.objects.get(id=1)
+>>> Authy.books.add(Bookie)
+>>> Authy = Author.objects.get(id=2)
+>>> Bookie = Book.objects.get(id=2)
+>>> Authy.books.add(Bookie)
+>>> Bookie = Book.objects.get(id=3)
+>>> Authy = Author.objects.get(id=3)
+>>> Authy.books.add(Bookie)
+>>> Authy = Author.objects.get(id=4)
+>>> Bookie = Book.objects.get(id=4)
+>>> Authy.books.add(Bookie)
+>>> Bookie = Book.objects.get(id=5)
+>>> Authy = Author.objects.get(id=5)
+>>> Authy.books.add(Bookie)
+>>> ^D
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> timezone.now
+Migrations for 'booksAuthors_app':
+  apps/booksAuthors_app/migrations/0003_author_notes.py:
+    - Add field notes to author
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying booksAuthors_app.0003_author_notes... OK
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.booksAuthors_app.models import *
+>>> b = book.objects.get(id=5)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'book' is not defined
+>>> b = Book.objects.get(id=5)
+>>> b.name = "C#"
+>>> Book.object.last().authors
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Book' has no attribute 'object'
+>>> Book.objects.last().authors
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Book' object has no attribute 'authors'
+>>> Author.objects.last().books
+<django.db.models.fields.related_descriptors.ManyRelatedManager object at 0x107344510>
+>>> Book.objects.last().Authors.all()
+<QuerySet [<Author: Author object>]>
+>>> Book.objects.last().Authors.first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ManyRelatedManager' object has no attribute 'first_name'
+>>> Book.objects.get(id=5).Authors.first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ManyRelatedManager' object has no attribute 'first_name'
+>>> Book.objects.get(id=5)
+<Book: Book object>
+>>> %autocall
+  File "<console>", line 1
+    %autocall
+    ^
+SyntaxError: invalid syntax
+>>> Book.objects.get(id=5)
+<Book: Book object>
+>>> Book.objects.get(id=5)
+<Book: Book object>
+>>> 
+KeyboardInterrupt
+>>> ^D
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> ^D
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ def __repr__(self):
+-bash: syntax error near unexpected token `('
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$         return "<Users object: {} {} {} {} {}>".format(self.first_name, self.last_name, self.email, self.notes, self.books)
+-bash: syntax error near unexpected token `('
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ %autocall
+-bash: fg: %autocall: no such job
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ pip install iPython
+Collecting iPython
+  Downloading ipython-5.5.0-py2-none-any.whl (758kB)
+    100% |████████████████████████████████| 768kB 872kB/s 
+Collecting pygments (from iPython)
+  Downloading Pygments-2.2.0-py2.py3-none-any.whl (841kB)
+    100% |████████████████████████████████| 849kB 1.0MB/s 
+Collecting prompt-toolkit<2.0.0,>=1.0.4 (from iPython)
+  Downloading prompt_toolkit-1.0.15-py2-none-any.whl (247kB)
+    100% |████████████████████████████████| 256kB 1.9MB/s 
+Requirement already satisfied: setuptools>=18.5 in /Users/sammiae/djangoEnv/lib/python2.7/site-packages (from iPython)
+Collecting backports.shutil-get-terminal-size; python_version == "2.7" (from iPython)
+  Downloading backports.shutil_get_terminal_size-1.0.0-py2.py3-none-any.whl
+Collecting pickleshare (from iPython)
+  Downloading pickleshare-0.7.4-py2.py3-none-any.whl
+Collecting decorator (from iPython)
+  Downloading decorator-4.1.2-py2.py3-none-any.whl
+Collecting traitlets>=4.2 (from iPython)
+  Downloading traitlets-4.3.2-py2.py3-none-any.whl (74kB)
+    100% |████████████████████████████████| 81kB 3.6MB/s 
+Collecting pexpect; sys_platform != "win32" (from iPython)
+  Downloading pexpect-4.2.1-py2.py3-none-any.whl (55kB)
+    100% |████████████████████████████████| 61kB 4.5MB/s 
+Collecting pathlib2; python_version == "2.7" or python_version == "3.3" (from iPython)
+  Downloading pathlib2-2.3.0-py2.py3-none-any.whl
+Collecting simplegeneric>0.8 (from iPython)
+  Downloading simplegeneric-0.8.1.zip
+Collecting appnope; sys_platform == "darwin" (from iPython)
+  Downloading appnope-0.1.0-py2.py3-none-any.whl
+Collecting wcwidth (from prompt-toolkit<2.0.0,>=1.0.4->iPython)
+  Downloading wcwidth-0.1.7-py2.py3-none-any.whl
+Collecting six>=1.9.0 (from prompt-toolkit<2.0.0,>=1.0.4->iPython)
+  Downloading six-1.11.0-py2.py3-none-any.whl
+Collecting enum34; python_version == "2.7" (from traitlets>=4.2->iPython)
+  Downloading enum34-1.1.6-py2-none-any.whl
+Collecting ipython-genutils (from traitlets>=4.2->iPython)
+  Downloading ipython_genutils-0.2.0-py2.py3-none-any.whl
+Collecting ptyprocess>=0.5 (from pexpect; sys_platform != "win32"->iPython)
+  Downloading ptyprocess-0.5.2-py2.py3-none-any.whl
+Collecting scandir; python_version < "3.5" (from pathlib2; python_version == "2.7" or python_version == "3.3"->iPython)
+  Downloading scandir-1.6.tar.gz
+Building wheels for collected packages: simplegeneric, scandir
+  Running setup.py bdist_wheel for simplegeneric ... done
+  Stored in directory: /Users/sammiae/Library/Caches/pip/wheels/7b/31/08/c85e74c84188cbec6a6827beec4d640f2bd78ae003dc1ec09d
+  Running setup.py bdist_wheel for scandir ... done
+  Stored in directory: /Users/sammiae/Library/Caches/pip/wheels/6e/33/69/090d9633efb6fe3c8077c40e1676819ed8d5a59b41cc9a5bea
+Successfully built simplegeneric scandir
+Installing collected packages: pygments, wcwidth, six, prompt-toolkit, backports.shutil-get-terminal-size, scandir, pathlib2, pickleshare, decorator, enum34, ipython-genutils, traitlets, ptyprocess, pexpect, simplegeneric, appnope, iPython
+Successfully installed appnope-0.1.0 backports.shutil-get-terminal-size-1.0.0 decorator-4.1.2 enum34-1.1.6 iPython-5.5.0 ipython-genutils-0.2.0 pathlib2-2.3.0 pexpect-4.2.1 pickleshare-0.7.4 prompt-toolkit-1.0.15 ptyprocess-0.5.2 pygments-2.2.0 scandir-1.6 simplegeneric-0.8.1 six-1.11.0 traitlets-4.3.2 wcwidth-0.1.7
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: Author.objects.first().books
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-b017cf11af2b> in <module>()
+----> 1 Author.objects.first().books
+
+NameError: name 'Author' is not defined
+
+In [2]: Book.objects.first().authors
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-4d7506606fe2> in <module>()
+----> 1 Book.objects.first().authors
+
+NameError: name 'Book' is not defined
+
+In [3]: from apps.booksAuthors_app.models import *
+
+In [4]: Book.objects.first().authors
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-4-4d7506606fe2> in <module>()
+----> 1 Book.objects.first().authors
+
+AttributeError: 'Book' object has no attribute 'authors'
+
+In [5]: b = book.objects.get(id=5)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-5-fd5ad16d7d9f> in <module>()
+----> 1 b = book.objects.get(id=5)
+
+NameError: name 'book' is not defined
+
+In [6]: book.objects.get(id=5)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-6-24f8fe5ecaf8> in <module>()
+----> 1 book.objects.get(id=5)
+
+NameError: name 'book' is not defined
+
+In [7]: Book.objects.all()
+Out[7]: <QuerySet [<Users object: C sharp all about C Sharp>, <Users object: Java all about Java>, <Users object: Python all about Python>, <Users object: PHP all about PHP>, <Users object: Ruby all about Ruby>]>
+
+In [8]: Book.objects.get(id=1)
+Out[8]: <Users object: C sharp all about C Sharp>
+
+In [9]: Author.objects.all()
+Out[9]: <QuerySet [<Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Speros Ejemplo Speros@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Jadee Yat Jadee@yat.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Jay Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>]>
+
+In [10]: bookie = Book.objects.get(id=1)
+
+In [11]: authy = Author.objects.get(id=1)
+
+In [12]: authy.books.all()
+Out[12]: <QuerySet [<Users object: C sharp all about C Sharp>]>
+
+In [13]: Book.objects.get(id=1)
+Out[13]: <Users object: C sharp all about C Sharp>
+
+In [14]: Author.objects.get(id=1)
+Out[14]: <Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [15]:                                                                              
+Do you really want to exit ([y]/n)? y
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 13, in Author
+    books = models.ManyToManyField(Book, related_name="Authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 13, in Author
+    books = models.ManyToManyField(Book, related_name="authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 15, in Author
+    books = models.ManyToManyField(Book, related_name="Authors")
+NameError: name 'Book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 15, in Author
+    books = models.ManyToManyField(book, related_name="Authors")
+NameError: name 'book' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 15
+    books = models.ManyToManyField(class Book, related_name="Authors")
+                                       ^
+SyntaxError: invalid syntax
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 15
+    books = models.ManyToManyField(class="Book", related_name="Authors")
+                                       ^
+SyntaxError: invalid syntax
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 367, in execute_from_command_line
+    utility.execute()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/core/management/__init__.py", line 341, in execute
+    django.setup()
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/apps/config.py", line 199, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 8, in <module>
+    class Author(models.Model):
+  File "/Users/sammiae/Documents/PythStack/Django/booksAuthors/booksauthors/apps/booksAuthors_app/models.py", line 15, in Author
+    books = models.ManyToManyField(books, related_name="Authors")
+NameError: name 'books' is not defined
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Unknown command: 'makemigration'
+Type 'manage.py help' for usage.
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigration
+Unknown command: 'makemigration'
+Type 'manage.py help' for usage.
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ 
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py makemigrations
+No changes detected
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksAuthors_app, contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+(djangoEnv) Samanthas-MacBook-Air:booksauthors sammiae$ python manage.py shell
+Python 2.7.10 (default, Jul 14 2015, 19:46:27) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: from apps.booksAuthors_app.models import *
+
+In [2]: bookie = Book.objects.get(id=1)
+
+In [3]: authy = Author.objects.get(id=1)
+
+In [4]: authy.books.add(bookie)
+
+In [5]: Author.objects.get(id=1)
+Out[5]: <Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [6]: Author.objects.get(id=5)
+Out[6]: <Users object: Jay Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [7]: b = Author.objects.get(id=5)
+
+In [8]: b.first_name = "Ketul"
+
+In [9]: Author.objects.get(id=5)
+Out[9]: <Users object: Jay Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [10]: b.save()
+
+In [11]: Author.objects.get(id=5)
+Out[11]: <Users object: Ketul Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [12]: bookie = Book.objects.get(id=1)
+
+In [13]: this_book = Book.objects.get(id=1)
+
+In [14]: this_author = Author.objects.get(id=1)
+
+In [15]: this_author.books.add(this_book)
+
+In [16]: this_book.books.add(this_author)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-16-3cbc7311bdb2> in <module>()
+----> 1 this_book.books.add(this_author)
+
+AttributeError: 'Book' object has no attribute 'books'
+
+In [17]: this_author.books.add(this_book)
+
+In [18]: this_book = Book.objects.get(id=2)
+
+In [19]: this_author.books.add(this_book)
+
+In [20]: Author.objects.all()
+Out[20]: <QuerySet [<Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Speros Ejemplo Speros@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Jadee Yat Jadee@yat.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Ketul Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>]>
+
+In [21]: Author.objects.get(id=1).all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-21-c2a54685ee59> in <module>()
+----> 1 Author.objects.get(id=1).all()
+
+AttributeError: 'Author' object has no attribute 'all'
+
+In [22]: Author.objects.get(id=1)
+Out[22]: <Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [23]: Book.object.get(Authors)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-23-316e076e8465> in <module>()
+----> 1 Book.object.get(Authors)
+
+AttributeError: type object 'Book' has no attribute 'object'
+
+In [24]: this_author.books.all()
+Out[24]: <QuerySet [<Users object: C sharp all about C Sharp>, <Users object: Java all about Java>]>
+
+In [25]: this_author = Author.objects.get(id=2)
+
+In [26]: this_book = Book.objects.get(id=1)
+
+In [27]: this_author.books.add(this_book)
+
+In [28]: this_book = Book.objects.get(id=2)
+
+In [29]: this_author.books.add(this_book)
+
+In [30]: this_book = Book.objects.get(id=3)
+
+In [31]: this_author.books.add(this_book)
+
+In [32]: this_author.books.all()
+Out[32]: <QuerySet [<Users object: C sharp all about C Sharp>, <Users object: Java all about Java>, <Users object: Python all about Python>]>
+
+In [33]: this_author = Author.objects.get(id=3)
+
+In [34]: this_book = Book.objects.get(id=1)
+
+In [35]: this_author.books.add(this_book)
+
+In [36]: this_book = Book.objects.get(id=2)
+
+In [37]: this_author.books.add(this_book)
+
+In [38]: this_book = Book.objects.get(id=3)
+
+In [39]: this_author.books.add(this_book)
+
+In [40]: this_book = Book.objects.get(id=4)
+
+In [41]: this_author.books.add(this_book)
+
+In [42]: this_book = Book.objects.get(id=5)
+
+In [43]: this_author.books.add(this_book)
+
+In [44]: this_author.books.all()
+Out[44]: <QuerySet [<Users object: C sharp all about C Sharp>, <Users object: Java all about Java>, <Users object: Python all about Python>, <Users object: PHP all about PHP>, <Users object: Ruby all about Ruby>]>
+
+In [45]: this_book = Book.objects.get(id=3)
+
+In [46]: this_book.Authors.all()
+Out[46]: <QuerySet [<Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Speros Ejemplo Speros@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>]>
+
+In [47]: this_book.Authors.first()
+Out[47]: <Users object: Speros Ejemplo Speros@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [48]: delete()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-48-c3f12e66adb2> in <module>()
+----> 1 delete()
+
+NameError: name 'delete' is not defined
+
+In [49]: this_book.Authors.first()
+Out[49]: <Users object: Speros Ejemplo Speros@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [50]: delete()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-50-c3f12e66adb2> in <module>()
+----> 1 delete()
+
+NameError: name 'delete' is not defined
+
+In [51]: this_book.Authors.first().delete()
+Out[51]: (4, {u'booksAuthors_app.Author': 1, u'booksAuthors_app.Author_books': 3})
+
+In [52]: this_book.Authors.first()
+Out[52]: <Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [53]: this_book = Book.objects.get(id=2)
+
+In [54]: this_author = Author.objects.get(id=5)
+
+In [55]: this_author.books.add(this_book)
+
+In [56]: this_book.Authors.all()
+Out[56]: <QuerySet [<Users object: Mike Example Mike@mike.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>, <Users object: Ketul Wei Jay@Wei.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>]>
+
+In [57]: this_author = Author.objects.get(id=3)
+
+In [58]: this_author.books.all()
+Out[58]: <QuerySet [<Users object: C sharp all about C Sharp>, <Users object: Java all about Java>, <Users object: Python all about Python>, <Users object: PHP all about PHP>, <Users object: Ruby all about Ruby>]>
+
+In [59]: this_author.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-59-483635fc79b9> in <module>()
+----> 1 this_author.all()
+
+AttributeError: 'Author' object has no attribute 'all'
+
+In [60]: Author.objects.get(id=3)
+Out[60]: <Users object: John Doe John@Doe.com 2017-10-17 01:51:20.951338+00:00 booksAuthors_app.Book.None>
+
+In [61]: Book.objects.filter(name="John")
+Out[61]: <QuerySet []>
+
+In [62]: this_author = Author.objects.get(id=2)
+---------------------------------------------------------------------------
+DoesNotExist                              Traceback (most recent call last)
+<ipython-input-62-9bbf0e7010b7> in <module>()
+----> 1 this_author = Author.objects.get(id=2)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in get(self, *args, **kwargs)
+    383             raise self.model.DoesNotExist(
+    384                 "%s matching query does not exist." %
+--> 385                 self.model._meta.object_name
+    386             )
+    387         raise self.model.MultipleObjectsReturned(
+
+DoesNotExist: Author matching query does not exist.
+
+In [63]: this_author = Author.objects.get(id=2)
+---------------------------------------------------------------------------
+DoesNotExist                              Traceback (most recent call last)
+<ipython-input-63-9bbf0e7010b7> in <module>()
+----> 1 this_author = Author.objects.get(id=2)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in get(self, *args, **kwargs)
+    383             raise self.model.DoesNotExist(
+    384                 "%s matching query does not exist." %
+--> 385                 self.model._meta.object_name
+    386             )
+    387         raise self.model.MultipleObjectsReturned(
+
+DoesNotExist: Author matching query does not exist.
+
+In [64]: Author.objects.get(id=2)
+---------------------------------------------------------------------------
+DoesNotExist                              Traceback (most recent call last)
+<ipython-input-64-2f327f7ea235> in <module>()
+----> 1 Author.objects.get(id=2)
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/manager.pyc in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+/Users/sammiae/djangoEnv/lib/python2.7/site-packages/django/db/models/query.pyc in get(self, *args, **kwargs)
+    383             raise self.model.DoesNotExist(
+    384                 "%s matching query does not exist." %
+--> 385                 self.model._meta.object_name
+    386             )
+    387         raise self.model.MultipleObjectsReturned(
+
+DoesNotExist: Author matching query does not exist.
+
+In [65]: 
