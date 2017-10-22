@@ -5,6 +5,8 @@ from models import User, UserManager
 from django.contrib import messages
 from datetime import date
 import json
+from django.urls import reverse
+
 
 def index(request):
 
@@ -32,18 +34,19 @@ def success(request):
         'user': User.objects.get(id=request.session['user_id'])
     }
 
-    return render(request, 'loginregis_app/success.html', context)
+    return redirect(reverse('beltreview:index'), context)
 
 
 def process(request):
     result = User.objects.login_validator(request.POST)
-    print result
+    print ("YOU ARE ON THE SUCCESS PAGE")
     if type(result) == list:
         if len(result) > 0:
             messages.error(request, result)
             return redirect('/')
 
     request.session['user_id'] = result.id
+    request.session['is_signed_in'] = True
     messages.success(request, "You successfully logged in!") 
     return redirect("/success")
 
